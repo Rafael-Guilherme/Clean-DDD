@@ -1,12 +1,12 @@
-import { Question } from '../../enterprise/entities/question'
-import { QuestionsRepository } from '../repositories/question-repository'
+import { Question } from "../../enterprise/entities/question";
+import { QuestionsRepository } from "../repositories/question-repository";
 
 interface GetQuestionBySlugUseCaseRequest {
-  slug: string
+  slug: string;
 }
 
 interface GetQuestionBySlugUseCaseResponse {
-  question: Question
+  question: Question;
 }
 
 export class GetQuestionBySlugUseCase {
@@ -15,14 +15,14 @@ export class GetQuestionBySlugUseCase {
   async execute({
     slug,
   }: GetQuestionBySlugUseCaseRequest): Promise<GetQuestionBySlugUseCaseResponse> {
-    const question = await this.questionsRepository.findBySlug(slug)
+    const question = await this.questionsRepository.findBySlug(slug);
 
     if (!question) {
-      throw new Error('Question not found.')
+      throw new Error("Question not found.");
     }
 
     return {
       question,
-    }
+    };
   }
 }
